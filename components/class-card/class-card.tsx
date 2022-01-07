@@ -13,10 +13,11 @@ export type ClassCardProps = {
   durationInMinute: number
   tag: string
   tagIcon: React.ReactElement
+  buttonTitle?: string
   className?: string
 }
 
-const ClassCard = ({ coverImg, user, title, secondaryTitle, bgColor, durationInMinute, tag, tagIcon, className }: ClassCardProps) => {
+const ClassCard = ({ coverImg, user, title, secondaryTitle, bgColor, durationInMinute, tag, tagIcon, buttonTitle, className }: ClassCardProps) => {
   const durationHours = Math.floor(durationInMinute / 60)
   const durationMins = durationInMinute - durationHours * 60
 
@@ -31,8 +32,8 @@ const ClassCard = ({ coverImg, user, title, secondaryTitle, bgColor, durationInM
   }
 
   return (
-    <div className={classNames(className, 'rounded-lg relative')} style={{ backgroundColor: bgColor }}>
-      <div className="rounded-tl-lg rounded-br-lg absolute top-0 left-0 flex items-center px-4 py-2" style={{ backgroundColor: bgColor }}>
+    <div className={classNames(className, 'rounded-lg', 'relative', bgColor)}>
+      <div className={classNames("rounded-tl-lg rounded-br-lg absolute top-0 left-0 flex items-center px-4 py-2", bgColor)}>
         {tagIcon}
         <span className="ml-2.5 text-base font-semibold uppercase">{tag}</span>
       </div>
@@ -47,7 +48,7 @@ const ClassCard = ({ coverImg, user, title, secondaryTitle, bgColor, durationInM
           <img src={user.photoUrl} alt={user.name} />
           <span className="font-semibold pl-2.5 text-xl">{user.name}</span>
         </div>
-        <button className="px-5 py-1.5 rounded-full font-semibold text-xl bg-salutation-500">Button</button>
+        <button className="px-5 py-1.5 rounded-full font-semibold text-xl bg-salutation-500">{buttonTitle || 'Button'}</button>
       </div>
     </div>
   )
